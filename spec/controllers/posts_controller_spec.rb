@@ -15,7 +15,7 @@ RSpec.describe PostsController, type: :controller do
       expect(response).to render_template :new
     end
 
-    it "intantiates @post" do
+    it "instantiates @post" do
       get :new
       expect(assigns(:post)).not_to be_nil
     end

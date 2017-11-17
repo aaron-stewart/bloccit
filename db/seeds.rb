@@ -19,6 +19,15 @@ topics = Topic.all
 end
 posts = Post.all
 
+#Create SponsoredPosts
+30.times do
+  SponsoredPost.create!(
+    topic: topics.sample,
+    title: "Sponsored!!",
+    body: RandomData.random_paragraph
+  )
+end
+
 #Create Comments
 100.times do
   Comment.create!(
@@ -36,12 +45,9 @@ end
   )
 end
 
-puts "#{Post.count}"
-Post.find_or_create_by(title: "A unique title", body: "A uinque body")
-puts "#{Post.count}"
-
 puts "Seed finished"
 puts "#{Topic.count} topics created"
 puts "#{Post.count} posts created"
 puts "#{Comment.count} comments created"
 puts "#{Question.count} questions created"
+puts "#{SponsoredPost.count} sponsored posts created"

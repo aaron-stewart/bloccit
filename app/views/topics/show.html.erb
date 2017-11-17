@@ -14,7 +14,20 @@
           </h4>
           <small>
             submitted <%= time_ago_in_words(post.created_at) %> ago <br>
-            <%= post.comments.count %> Comments 
+            <%= post.comments.count %> Comments
+          </small>
+        </div>
+      </div>
+    <% end %>
+    <% @topic.sponsored_posts.each do |spost| %>
+      <div class="media">
+        <div class="media-body">
+          <h4 class="media-heading">
+            <%= link_to spost.title, topic_sponsored_post_path(@topic, spost) %>
+          </h4>
+          <small>
+            submitted <%= time_ago_in_words(spost.created_at) %> ago <br>
+            <%= spost.comments.count %> Comments
           </small>
         </div>
       </div>
@@ -22,5 +35,6 @@
   </div>
   <div class="col-md-4">
     <%= link_to "New Post", new_topic_post_path(@topic), class: 'btn btn-success' %>
+    <%= link_to "New Sponsored Post", new_topic_sponsored_post_path(@topic), class: 'btn btn-success' %>
   </div>
 </div>
