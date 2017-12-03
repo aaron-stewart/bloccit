@@ -1,7 +1,7 @@
 require 'rails_helper'
 include RandomData
 
-RSpec.describe QuestionController, type: :controller do
+RSpec.describe QuestionsController, type: :controller do
   let (:my_question) do
     Question.create(
       id: 1,
@@ -119,5 +119,5 @@ RSpec.describe QuestionController, type: :controller do
       expect(response).to redirect_to question_path
     end
   end
-  
+
 end
