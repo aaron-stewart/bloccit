@@ -50,5 +50,7 @@ source 'https://rubygems.org'
    gem 'listen', '~> 3.0.5'
  end
 
-# Used for encrypting passwords 
+# Used for encrypting passwords
 gem 'bcrypt'
+
+gem 'figaro', '1.0'

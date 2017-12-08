@@ -3,6 +3,7 @@ class Post < ApplicationRecord
   belongs_to :user
   has_many :comments, dependent: :destroy
   has_many :votes, dependent: :destroy
+  has_many :favorites, dependent: :destroy
 
   after_create :create_vote
 
@@ -36,5 +37,5 @@ class Post < ApplicationRecord
   def create_vote
     user.votes.create(value: 1, post: self)
   end
-  
+
 end
