@@ -5,9 +5,9 @@ RSpec.describe Post, type: :model do
   let(:description) { RandomData.random_paragraph }
   let(:title) { RandomData.random_sentence }
   let(:body) { RandomData.random_paragraph }
-  let(:topic) { Topic.create!(name: name, description: description) }
-  let(:user) { User.create!(name: "Bloccit User", email: "user@bloccit.com", password: "helloworld") }
-  let(:post) { topic.posts.create!(title: title, body: body, user: user) }
+  let(:topic) { create(:topic) }
+  let(:user) { create(:user) }
+  let(:post) { create(:post) }
 
   it { is_expected.to have_many(:comments) }
   it { is_expected.to have_many(:votes) }
@@ -26,7 +26,7 @@ RSpec.describe Post, type: :model do
 
   describe "attributes" do
     it "has title, body, and user attribute" do
-      expect(post).to have_attributes(title: title, body: body, user: user)
+      expect(post).to have_attributes(title: post.title, body: post.body, user: post.user)
     end
   end
 
@@ -55,6 +55,7 @@ RSpec.describe Post, type: :model do
         expect( post.points ).to eq(@up_votes - @down_votes)
       end
     end
+  end
 
     describe "#update_rank" do
       it "calculates the correct rank" do
@@ -74,7 +75,6 @@ RSpec.describe Post, type: :model do
         expect(post.rank).to eq (old_rank -1)
       end
     end
-  end
 
   describe "#create_vote" do
     it "sets the post up_votes to 1" do
@@ -87,8 +87,9 @@ RSpec.describe Post, type: :model do
       post.save
     end
 
-    it "associates the vote with the owner of the post"
+    it "associates the vote with the owner of the post" do
       expect(post.votes.first.user).to eq(post.user)
     end
   end
+
 end
